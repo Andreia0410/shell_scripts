@@ -1,0 +1,13 @@
+Script que apenda as infos em um arquivo csv
+
+Pesquisar como gerar um csv no bash
+#!/bin/bash
+
+hdfs dfs -get /teste/testecsv.csv
+hdfs dfs -rm /teste/testecsv.csv
+echo '8365394756 | Lucas' >> testecsv.csv
+echo '8463856352 | Andreia' >> testecsv.csv
+echo '7463524846 | Murilo ' >> testecsv.csv
+hdfs dfs -put testecsv.csv /teste/
+rm testecsv.csv
+

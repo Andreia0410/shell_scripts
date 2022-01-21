@@ -1,0 +1,13 @@
+Sempre fazer rotinas com tarefas repetidas
+deixar em inglês nomes de variáveis e 
+
+Rodar comando de hive via terminal --> hive -e (estrutura)
+
+1 para criar a tabelas
+1 para criar os insert's
+
+
+Deixar tudo numa linha - Copiar o script
+
+Cabeçalho da tabela.
+tblproperties ("skip.header.line.count"="1");

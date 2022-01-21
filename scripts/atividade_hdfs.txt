@@ -1,0 +1,89 @@
+#!/bin/bash
+echo Digite o nome do arquivo e sua extensao:
+read file
+if [ -e $file ];
+then
+	echo Arquivo $file existe, formatando
+	awk '{ gsub("\\t","|"); print $0}' $file > formatado.csv
+	echo formatado
+	echo Digite o nome da pasta no HDFS para subir o arquivo:
+	read folder
+	if $(hadoop fs -test -d $folder);
+	then
+		echo Diretorio $folder ja  existe
+		if $(hadoop fs -test -e $folder/$file);
+		then
+			echo Arquivo $file  ja existe
+			rm $file
+                        rm formatado.csv
+
+		else
+			echo inputando arquivo
+			hdfs dfs -put formatado.csv arquivos
+			echo inputado
+			echo remover arquivo original
+			rm $file
+			rm formatado.csv
+			echo arquivo removido
+		fi
+	else
+		echo Diretorio $folder  nao existe, criando
+		hdfs dfs -mkdir $folder
+		echo pasta criada	
+		echo inputar arquivo
+		hdfs dfs -put formatado.csv $folder
+		echo inputado
+		echo remover arquivo local
+		rm $file
+		rm  formatado.csv
+	fi
+else
+	echo Arquivo $file  nao existe
+fi
+
+Escopo da atividade
+
+Namenode:
+    - Dois arquivos csv, um com tratamento p/ o cpf,
+    tab('\t') e zeros esquerda. Verificar o formato da tabela (encoding)
+Hive:
+    - Garçons/Cardapio/Tudo(Pedido)
+    
+
+
+
+
+Fazer consulta de hive no arquivo
+hive -f "<path to the '.hql' file>"
+
+namenod - dois csv, um tratado p/ o cpf e zeros à esquerda e o tab
+Hive - Garçons/Produtos/Pedidos
+
+cardapio e garçom
+
+HDFS - Cd tabela vai ter a pasta de gaçons c/ o arquivo lá dentro
+
+dá um trim na coluna na trusted zone.
+
+delimitador table - '\0009'
+
+hive run.hql
+
+insert select
+
+formatação do arquivo:
+dentro do hive:
+vim +"set nobomb | set fenc=utf8 | x" filename.txt
+
+ou 
+awk '{ sub("\r$", ""); print }' winfile.txt > unixfile.txt
+
+dentro do arquivo na ultima linha digite e enter.
+:set ff=unix
+
+Para vê os caracteres ocultos.
+cat -A file -- mostra o arquivo inteiro
+head -A file -- mostra as 10 primeiras linhas
+tail -A file -- mostra as 10 linhas
+
+

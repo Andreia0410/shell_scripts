@@ -1,0 +1,55 @@
+rodar um comando linux sem sair do VI
+:!comando linux
+
+#input comandos em linux 
+read variável
+echo $variável
+
+#pode-se ler várias variávels em uma unica linha
+read a b c d
+ficam todas separadas por espaço
+
+#informãções sobre os parâmetros de um script
+$0 - Nome do programa
+$# quantidade de parâmetros
+$* todos os parâmetros inseridos
+$1-9 cada um dos parâmetros
+
+
+#sintaxe de um if padrão
+if [ $n1 -eq $n2 ]
+then
+    echo "Os números são iguais"
+elif [ $n1 -gt $n2 ]
+then
+    echo "O primeiro valor é maior que o segundo"
+else
+    echo "O segundo valor é maior que o primeiro"
+fi
+
+
+
+#comando para se fazer comparação
+-eq = igual
+-ne = diferente
+-gt = maior que 
+-ge = maior ou igual
+-lt = menor que
+-le = menor ou igual
+
+
+#laços, loop
+##for
+
+for variavel in valor
+do
+	comandos
+done
+
+#exemplo
+for numero in 1 2 3 4 5
+do 
+	echo "o número atual é $numero"
+done
+
+#!/bin/bash
